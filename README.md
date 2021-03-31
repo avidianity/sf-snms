@@ -2,54 +2,53 @@
 
 ## Roadmap
 
-[ ] Title
+- [ ] Title
 
-[ ] Hardware Requirements
+- [ ] Hardware Requirements
 
-[ ] Key Features
+- [ ] Key Features
 
 ## Hardware/Physical Component Requirements
 
 __Items__:
 
-[ ] Plant Pots
+- [ ] Plant Pots
 
-[ ] See-Through Plastic
+- [ ] See-Through Plastic
 
-[ ] PVC Pipes
+- [ ] PVC Pipes
 
-[ ] Duct Tape
-
+- [ ] Duct Tape
 
 __Electronics__:
 
-[ ] Water Pump
+- [ ] Water Pump
 
-[ ] Exhaust Fan
+- [ ] Exhaust Fan
 
-    [ ] Sensors:
+    - [ ] Sensors:
 
-        [ ] 1. Temperature
+        - [ ] 1. Temperature
 
-        [ ] 2. Humidity
+        - [ ] 2. Humidity
 
-        [ ] 3. Soil pH
+        - [ ] 3. Soil pH
 
-        [ ] 4. Nutrient
+        - [ ] 4. Nutrient
 
-[ ] Outlet
+- [ ] Outlet
 
-[ ] Plastic Water Tank
+- [ ] Plastic Water Tank
 
-[ ] Plastic Hose
+- [ ] Plastic Hose
 
 __Core Electronics__:
 
-[ ] Raspberry Pi 4
+- [ ] Raspberry Pi 4
 
-[ ] Wires
+- [ ] Wires
 
-[ ] Camera
+- [ ] Camera
 
 ## Software Requirements
 
