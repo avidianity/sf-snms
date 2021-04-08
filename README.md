@@ -26,22 +26,17 @@ __Items__:
 
 - [ ] Duct Tape
 
+- [ ] Peristaltic Pump
+
+- [ ] 12V Battery
+
+- [ ] Solar Panel
 
 __Electronics__:
 
 - [ ] Water Pump
 
 - [ ] Exhaust Fan
-
-    - Sensors:
-
-    - [ ] 1. Temperature
-
-    - [ ] 2. Humidity
-
-    - [ ] 3. Soil pH
-
-    - [ ] 4. Nutrient
 
 - [ ] Outlet
 
@@ -56,6 +51,18 @@ __Core Electronics__:
 - [ ] Wires
 
 - [ ] Camera
+
+__Sensors__:
+
+- [ ] Temperature
+
+- [ ] Humidity
+
+- [ ] Soil pH
+
+- [ ] Nutrient
+
+- [ ] Turbidity
 
 ## Software Requirements
 
@@ -75,13 +82,13 @@ Netlify
 
 - [ ] Exhaust Fan controllable (On/Off)
 
-- [ ] Camera viewable 
+- [ ] Camera viewable
 
 - [ ] Water Pump controllable
 
 - [ ] Water nutrient measure A.I (distribution preflight)
 
-- [ ] Nutrient dispenser 
+- [ ] Nutrient dispenser
 
 - [ ] Water content monitor
 
@@ -106,3 +113,9 @@ Netlify
 - [ ] Water distribution limit
 
 - [ ] Remote controlling
+
+- [ ] Plant Brochure
+
+- [ ] User Manual
+
+- [ ] Recycleable Water Distributions
