@@ -1,4 +1,4 @@
-# Garden Gnome: Intelligent Garden Automation System
+# Garden Hydroponics Monitoring System
 
 ## Roadmap
 
