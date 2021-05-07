@@ -1,4 +1,4 @@
-# Garden Gnome: Intelligent Garden Automation System
+# Intelligent Hydroponics Garden System
 
 ## Roadmap
 
@@ -18,25 +18,21 @@
 
 __Items__:
 
-- [ ] Plant Pots
+- [ ] Plant Pots - 200PHP/Pack
 
-- [ ] See-Through Plastic
+- [ ] See-Through Plastic - 500PHP/3x5 Meters
 
-- [ ] PVC Pipes
-
-- [ ] Duct Tape
+- [ ] PVC Pipes - 4000PHP
 
 - [ ] Peristaltic Pump
 
-- [ ] 12V Battery
+- [ ] 12V Battery - 500PHP
 
-- [ ] Solar Panel
+- [ ] Solar Panel - 1000PHP
 
 __Electronics__:
 
-- [ ] Water Pump
-
-- [ ] Exhaust Fan
+- [ ] Water Pump - 1500PHP
 
 - [ ] Outlet
 
@@ -46,7 +42,7 @@ __Electronics__:
 
 __Core Electronics__:
 
-- [ ] Raspberry Pi 4
+- [ ] Raspberry Pi 4 - 5000PHP
 
 - [ ] Wires
 
@@ -54,15 +50,11 @@ __Core Electronics__:
 
 __Sensors__:
 
-- [ ] Temperature
+- [ ] Temperature/Humidity - 300PHP
 
-- [ ] Humidity
+- [ ] NPK - 4000PHP
 
-- [ ] Soil pH
-
-- [ ] Nutrient
-
-- [ ] Turbidity
+- [ ] Water Level - 300PHP
 
 ## Software Requirements
 
@@ -80,13 +72,9 @@ Netlify
 
 ## Features
 
-- [ ] Exhaust Fan controllable (On/Off)
-
 - [ ] Camera viewable
 
 - [ ] Water Pump controllable
-
-- [ ] Water nutrient measure A.I (distribution preflight)
 
 - [ ] Nutrient dispenser
 
@@ -110,7 +98,7 @@ Netlify
 
 - [ ] Auto generate logs of activities
 
-- [ ] Water distribution limit
+- [ ] Limit water distribution
 
 - [ ] Remote controlling
 
