@@ -1,4 +1,4 @@
-# Intelligent Hydroponics Garden System
+# "Smart Farming": A Soil Nutrient Monitoring System
 
 ## Roadmap
 
