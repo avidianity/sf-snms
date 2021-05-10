@@ -12,27 +12,19 @@
 
 - [ ] Pre oral
 
-- [ ] Title Defense
+- [x] Title Defense
 
 ## Hardware/Physical Component Requirements
 
 __Items__:
 
-- [ ] Plant Pots - 200PHP/Pack
+- [x] PVC Pipes
 
-- [ ] See-Through Plastic - 500PHP/3x5 Meters
-
-- [ ] PVC Pipes - 4000PHP
-
-- [ ] Peristaltic Pump
-
-- [ ] 12V Battery - 500PHP
-
-- [ ] Solar Panel - 1000PHP
+- [x] Peristaltic Pump
 
 __Electronics__:
 
-- [ ] Water Pump - 1500PHP
+- [ ] Water Pump
 
 - [ ] Outlet
 
@@ -42,19 +34,19 @@ __Electronics__:
 
 __Core Electronics__:
 
-- [ ] Raspberry Pi 4 - 5000PHP
+- [x] Raspberry Pi 4
 
 - [ ] Wires
 
-- [ ] Camera
+- [x] Camera
 
 __Sensors__:
 
-- [ ] Temperature/Humidity - 300PHP
+- [ ] Temperature/Humidity
 
-- [ ] NPK - 4000PHP
+- [ ] NPK
 
-- [ ] Water Level - 300PHP
+- [x] Water Level
 
 ## Software Requirements
 
