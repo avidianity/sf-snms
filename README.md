@@ -36,13 +36,13 @@ __Core Electronics__:
 
 - [x] Raspberry Pi 4
 
-- [ ] Wires
+- [x] Wires
 
 - [x] Camera
 
 __Sensors__:
 
-- [ ] Temperature/Humidity
+- [x] Temperature/Humidity
 
 - [ ] NPK
 
