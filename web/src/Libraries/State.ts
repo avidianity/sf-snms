@@ -49,7 +49,10 @@ export class State {
 		return key in this.getAll();
 	}
 
-	get<T = any>(key: string): T {
+	get<T = any>(key: string): T | null {
+		if (!this.has(key)) {
+			return null;
+		}
 		return this.getAll()[key];
 	}
 
