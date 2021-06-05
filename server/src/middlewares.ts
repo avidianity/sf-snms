@@ -5,21 +5,24 @@ import passport from 'passport';
 import mimeTypes from 'mime-types';
 import path from 'path';
 import { Strategy } from 'passport-http-bearer';
-
-const Token: any = '';
+import { Token } from './models/Token';
+import { HttpException } from './exceptions/HttpException';
 
 export function errorHandler(error: any, _req: Request, res: Response, _next: NextFunction) {
-	console.error(error);
+	if (error instanceof HttpException === false) {
+		console.error(error);
+	}
+
 	return res.status(error.status || 500).json(error);
 }
 
 export function authenticate(callback?: Function | Function[] | Router | Router[]) {
 	const middlewares = [
-		(_req: Request, _res: Response, next: NextFunction) => {
+		(req: Request, _res: Response, next: NextFunction) => {
 			passport.use(
 				new Strategy(async (hash, done) => {
 					try {
-						let token = await Token.findOne({
+						const token = await Token.findOne({
 							where: {
 								hash: md5(hash),
 							},
@@ -32,9 +35,9 @@ export function authenticate(callback?: Function | Function[] | Router | Router[
 
 						token.lastUsed = new Date();
 						token.save().catch(console.error);
+						req.token = token;
 						return done(null, token.user);
 					} catch (error) {
-						console.error(error);
 						return done(error);
 					}
 				})

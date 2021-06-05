@@ -1,3 +1,6 @@
+import { Server } from 'socket.io';
+import { Token } from './models/Token';
+
 declare global {
 	interface String {
 		toNumber(): number;
@@ -15,6 +18,22 @@ declare global {
 
 	interface StringConstructor {
 		random(size?: number): string;
+	}
+
+	namespace Express {
+		interface Request {
+			token?: Token;
+		}
+
+		interface Application {
+			getIO(): Server;
+		}
+
+		interface User {
+			id: number;
+			username: string;
+			password: string;
+		}
 	}
 }
 

@@ -1,6 +1,7 @@
 import { hashSync, compareSync } from 'bcrypt';
-import { NextFunction, Request, Response } from 'express';
-import { matchedData, validationResult } from 'express-validator';
+import { Application, NextFunction, Request, Response } from 'express';
+import { Location, matchedData, validationResult } from 'express-validator';
+import { Server } from 'socket.io';
 import { ValidationException } from './exceptions/ValidationException';
 import { Model } from './models/Model';
 
@@ -45,7 +46,7 @@ export namespace Validation {
 		};
 	}
 
-	export function validate() {
+	export function validate(locations: Location[] = ['body']) {
 		return (req: Request, _res: Response, next: NextFunction) => {
 			const errors = validationResult(req);
 
@@ -53,8 +54,12 @@ export namespace Validation {
 				return next(new ValidationException(errors.array()));
 			}
 
-			const data = matchedData(req, { locations: ['body'] });
-			req.body = { ...data };
+			const data = matchedData(req, { locations });
+
+			locations.forEach((key) => {
+				req[key] = { ...data };
+			});
+
 			return next();
 		};
 	}
@@ -68,6 +73,10 @@ export namespace Hash {
 	export function check(data: any, hashed: string) {
 		return compareSync(data, hashed);
 	}
+}
+
+export function getIO(app: Application): Server {
+	return app.get('io');
 }
 
 export function groupBy<T, K extends keyof T>(data: Array<T>, key: K) {

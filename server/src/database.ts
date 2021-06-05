@@ -19,9 +19,4 @@ export default createConnection({
 	entities: [`${__dirname}/models/*.ts`, `${__dirname}/models/*.js`],
 	synchronize: env !== 'production',
 	logging: true,
-})
-	.then(() => console.log(`⚡: ${type}:${port} connected.`))
-	.catch((error) => {
-		console.error(error);
-		process.exit(500);
-	});
+}).then(() => console.log(`⚡: ${type}:${host}@${port} connected.`));

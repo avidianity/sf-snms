@@ -4,7 +4,7 @@ type FreeObject = {
 	[key: string]: any;
 };
 
-export abstract class Service<T> {
+export class Service<T> {
 	protected url: string;
 
 	constructor(url: string) {

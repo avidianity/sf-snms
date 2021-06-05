@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { v4 } from 'uuid';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { routes } from '../routes';
 import Dashboard from './Dashboard';
+import Login from './Login';
 
 const urls = [
 	'/js/jquery.min.js',
@@ -37,6 +40,22 @@ const urls = [
 ];
 
 export default function App() {
+	const links = useMemo(
+		() => [
+			{
+				to: routes.HOME,
+				exact: true,
+				component: Login,
+			},
+			{
+				to: routes.DASHBOARD,
+				exact: false,
+				component: Dashboard,
+			},
+		],
+		[]
+	);
+
 	useEffect(() => {
 		const id = v4();
 
@@ -45,6 +64,7 @@ export default function App() {
 
 			script.src = url;
 			script.classList.add(id);
+			script.defer = true;
 
 			return script;
 		});
@@ -57,5 +77,13 @@ export default function App() {
 		// eslint-disable-next-line
 	}, []);
 
-	return <Dashboard />;
+	return (
+		<Router>
+			<Switch>
+				{links.map((link) => (
+					<Route {...link} />
+				))}
+			</Switch>
+		</Router>
+	);
 }

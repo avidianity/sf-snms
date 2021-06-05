@@ -10,9 +10,7 @@ export class HttpException extends Error {
 
 	constructor(data?: Partial<ErrorData>) {
 		super(data?.message);
-		if (data) {
-			this.status = data?.status || 500;
-			this.errors = data?.errors || [];
-		}
+		this.status = data?.status || 500;
+		this.errors = data?.errors || [];
 	}
 }
