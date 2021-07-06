@@ -1,15 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
 import { v4 } from 'uuid';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, RouteProps } from 'react-router-dom';
 import { routes } from '../routes';
 import Dashboard from './Dashboard';
 import Login from './Login';
+import Register from './Register';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const urls = [
-	'/js/jquery.min.js',
-	'/js/popper.min.js',
+	// '/js/jquery.min.js',
+	// '/js/popper.min.js',
+	// '/js/bootstrap.min.js',
 	'/js/moment.min.js',
-	'/js/bootstrap.min.js',
 	'/js/simplebar.min.js',
 	'/js/daterangepicker.js',
 	'/js/jquery.stickOnScroll.js',
@@ -40,17 +42,20 @@ const urls = [
 ];
 
 export default function App() {
-	const links = useMemo(
+	const links: RouteProps[] = useMemo(
 		() => [
 			{
-				to: routes.HOME,
+				path: routes.HOME,
 				exact: true,
 				component: Login,
 			},
 			{
-				to: routes.DASHBOARD,
-				exact: false,
+				path: routes.DASHBOARD,
 				component: Dashboard,
+			},
+			{
+				path: routes.REGISTER,
+				component: Register,
 			},
 		],
 		[]
@@ -78,12 +83,14 @@ export default function App() {
 	}, []);
 
 	return (
-		<Router>
-			<Switch>
-				{links.map((link) => (
-					<Route {...link} />
-				))}
-			</Switch>
-		</Router>
+		<QueryClientProvider client={new QueryClient()}>
+			<Router>
+				<Switch>
+					{links.map((link, index) => (
+						<Route {...link} key={index} />
+					))}
+				</Switch>
+			</Router>
+		</QueryClientProvider>
 	);
 }

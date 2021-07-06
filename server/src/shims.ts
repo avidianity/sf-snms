@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import { Token } from './models/Token';
+import { User as UserModel } from './models/User';
 
 declare global {
 	interface String {
@@ -29,11 +30,7 @@ declare global {
 			getIO(): Server;
 		}
 
-		interface User {
-			id: number;
-			username: string;
-			password: string;
-		}
+		interface User extends UserModel {}
 	}
 }
 

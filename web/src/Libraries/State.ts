@@ -10,7 +10,7 @@ export type ChangeEvent<T> = (value: T) => void;
 export class State {
 	protected static instance = new State();
 	protected storage: Storage;
-	protected key = 'paymento-state-key';
+	protected key = 'sfsnms-state-key';
 	protected bus: Bus;
 
 	constructor(key?: string) {

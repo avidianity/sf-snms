@@ -1,6 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
-import { outIf } from '../../helpers';
+import axios from 'axios';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { useHistory } from 'react-router';
+import { Asker, outIf } from '../../helpers';
 import { State } from '../../Libraries/State';
+import { routes } from '../../routes';
 
 type Props = {};
 
@@ -8,19 +11,37 @@ const Navbar: FC<Props> = (props) => {
 	const state = State.getInstance();
 	const [mode, setMode] = useState(state.get<string>('mode') || 'dark');
 	const [menu, setMenu] = useState(false);
+	const history = useHistory();
 
-	const light = document.getElementById('lightTheme')!;
-	const dark = document.getElementById('darkTheme')!;
+	const light = useMemo(() => document.getElementById('lightTheme') || new HTMLElement(), []);
+	const dark = useMemo(() => document.getElementById('darkTheme') || new HTMLElement(), []);
+
+	const logout = async () => {
+		if (await Asker.danger('Are you sure you want to logout?')) {
+			state.clear();
+			toastr.success('Logged out successfully.');
+			history.push(routes.HOME);
+			axios.get('/auth/logout').catch((e) => e);
+		}
+	};
 
 	useEffect(() => {
 		if (mode === 'dark') {
-			light.disable(true);
-			dark.disable(false);
+			if (!light.hasAttribute('disabled')) {
+				light.disable(true);
+			}
+			if (dark.hasAttribute('disabled')) {
+				dark.disable(false);
+			}
 		} else {
-			dark.disable(true);
-			light.disable(false);
+			if (!dark.hasAttribute('disabled')) {
+				dark.disable(true);
+			}
+			if (light.hasAttribute('disabled')) {
+				light.disable(false);
+			}
 		}
-	});
+	}, [mode, light, dark]);
 
 	return (
 		<nav className='topnav navbar navbar-light'>
@@ -43,18 +64,14 @@ const Navbar: FC<Props> = (props) => {
 						onClick={(e) => {
 							e.preventDefault();
 							if (mode === 'dark') {
-								dark.disable(true);
-								light.disable(false);
 								state.set('mode', 'light');
 								setMode('light');
 							} else {
-								light.disable(true);
-								dark.disable(false);
 								state.set('mode', 'dark');
 								setMode('dark');
 							}
 						}}>
-						<i className='fe fe-sun fe-16'></i>
+						<i className={`fe fe-${mode === 'dark' ? 'sun' : 'moon'} fe-16`}></i>
 					</a>
 				</li>
 				<li className={`nav-item dropdown ${outIf(menu, 'show')}`}>
@@ -79,7 +96,13 @@ const Navbar: FC<Props> = (props) => {
 							<i className='la la-cog mr-1'></i>
 							<span>Settings</span>
 						</a>
-						<a className='dropdown-item d-flex align-items-center' href='/'>
+						<a
+							className='dropdown-item d-flex align-items-center'
+							href='/logout'
+							onClick={(e) => {
+								e.preventDefault();
+								logout();
+							}}>
 							<i className='la la-sign-out-alt mr-1'></i>
 							<span>Logout</span>
 						</a>

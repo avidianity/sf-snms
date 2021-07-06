@@ -47,6 +47,12 @@ export function ucwords(string: string) {
 		.join(' ');
 }
 
+export function setValues(setter: Function, data: any) {
+	for (const key in data) {
+		setter(key, data[key]);
+	}
+}
+
 let handle: NodeJS.Timeout | null = null;
 
 export function handleError(error: any, useHandle = true) {
@@ -73,7 +79,7 @@ export function handleError(error: any, useHandle = true) {
 							clearTimeout(handle);
 							handle = null;
 						}
-					}, 2500);
+					}, 3500);
 					return;
 				} else {
 					toastr.error('Unable to connect. Please check your internet connection or the server may be down.');

@@ -36,6 +36,7 @@ export function authenticate(callback?: Function | Function[] | Router | Router[
 						token.lastUsed = new Date();
 						token.save().catch(console.error);
 						req.token = token;
+						req.user = token.user;
 						return done(null, token.user);
 					} catch (error) {
 						return done(error);

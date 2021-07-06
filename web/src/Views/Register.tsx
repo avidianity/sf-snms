@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
-import { UserContract } from '../Contracts/user.contract';
 import { handleError } from '../helpers';
 import { State } from '../Libraries/State';
 import { routes } from '../routes';
@@ -14,7 +13,7 @@ type Inputs = {
 	password: string;
 };
 
-const Login: FC<Props> = (props) => {
+const Register: FC<Props> = (props) => {
 	const [processing, setProcessing] = useState(false);
 	const { register, handleSubmit } = useForm<Inputs>();
 	const history = useHistory();
@@ -23,13 +22,9 @@ const Login: FC<Props> = (props) => {
 	const submit = async (payload: Inputs) => {
 		setProcessing(true);
 		try {
-			const {
-				data: { token, user },
-			} = await axios.post<{ token: string; user: UserContract }>('/auth/login', payload);
-			toastr.success(`Welcome back, ${user.username}.`);
-			state.set('token', token);
-			state.set('user', user);
-			history.push(routes.DASHBOARD);
+			await axios.post('/auth/register', payload);
+			toastr.success('Registered successfully!');
+			history.push(routes.HOME);
 		} catch (error) {
 			handleError(error, false);
 		} finally {
@@ -50,7 +45,7 @@ const Login: FC<Props> = (props) => {
 						<img src='/logo.png' alt='SF-SNMS' style={{ width: '64px', height: '64px' }} className='rounded-circle border' />
 					</Link>
 					<h4>Smart Farming: A Soil Nutrient Monitoring System</h4>
-					<h1 className='h6 mb-3'>Sign In</h1>
+					<h1 className='h6 mb-3'>Sign Up</h1>
 					<div className='form-group'>
 						<label htmlFor='username' className='sr-only'>
 							Username
@@ -78,10 +73,10 @@ const Login: FC<Props> = (props) => {
 						/>
 					</div>
 					<button className='btn btn-primary btn-block' type='submit' disabled={processing}>
-						{processing ? <i className='la la-circle-notch la-spin'></i> : 'Login'}
+						{processing ? <i className='la la-circle-notch la-spin'></i> : 'Register'}
 					</button>
 					<div className='text-left pt-2'>
-						<Link to={routes.REGISTER}>Don't have an account? Sign Up</Link>
+						<Link to={routes.HOME}>Already have an account? Sign In</Link>
 					</div>
 					<p className='mt-5 mb-3 text-muted'>© {new Date().getFullYear()}</p>
 				</form>
@@ -90,4 +85,4 @@ const Login: FC<Props> = (props) => {
 	);
 };
 
-export default Login;
+export default Register;

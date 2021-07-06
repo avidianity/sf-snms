@@ -4,6 +4,7 @@ import md5 from 'md5';
 import { BadRequestException } from '../exceptions/BadRequestException';
 import { NotFoundException } from '../exceptions/NotFoundException';
 import { Hash, Validation } from '../helpers';
+import { authenticate } from '../middlewares';
 import { Token } from '../models/Token';
 import { User } from '../models/User';
 
@@ -56,5 +57,13 @@ router.post('/login', [
 		return res.json({ user, token: hash });
 	},
 ]);
+
+router.get(
+	'/logout',
+	authenticate(async (req: Request, res: Response) => {
+		await req.token?.remove();
+		return res.status(204).end();
+	})
+);
 
 export const auth = router;
