@@ -116,7 +116,7 @@ export class SocketService {
 
 			this.emit(`connect.${socket.user.id}`);
 
-			socket.on('disconnect', async () => {
+			socket.on('disconnect', () => {
 				this.connections--;
 
 				const index = this.users.findIndex(
