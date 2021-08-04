@@ -10,7 +10,7 @@
 
 - [x] Key Features
 
-- [ ] Pre oral
+- [x] Pre oral
 
 - [x] Title Defense
 
@@ -24,21 +24,21 @@ __Items__:
 
 __Electronics__:
 
-- [ ] Water Pump
+- [x] Water Pump
 
 - [ ] Outlet
 
-- [ ] Plastic Water Tank
+- [x] Plastic Water Tank
 
-- [ ] Plastic Hose
+- [x] Plastic Hose
 
 __Core Electronics__:
 
 - [x] Raspberry Pi 4
 
-- [x] Wires
+- [x] Arduino Uno
 
-- [x] Camera
+- [x] Wires
 
 __Sensors__:
 
@@ -63,8 +63,6 @@ DigitalOcean
 Netlify
 
 ## Features
-
-- [ ] Camera viewable
 
 - [ ] Water Pump controllable
 
