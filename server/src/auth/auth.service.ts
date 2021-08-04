@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { compare, hash } from 'bcrypt';
 import md5 from 'md5';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { LoginDTO } from './dto/login.dto';
 import { RegisterDTO } from './dto/register.dto';
 

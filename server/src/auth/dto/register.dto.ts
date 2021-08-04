@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
-import { Unique } from 'src/validators';
+import { Unique } from '../../validators';
 
 export class RegisterDTO {
 	@IsString()

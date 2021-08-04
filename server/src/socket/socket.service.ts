@@ -11,7 +11,7 @@ import {
 	ReservedOrUserListener,
 } from 'socket.io/dist/typed-events';
 import { User } from '@prisma/client';
-import { AuthService } from 'src/auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { ExtendedError } from 'socket.io/dist/namespace';
 
 type Users = Array<{ user: User; id: string }>;

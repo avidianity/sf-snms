@@ -1,5 +1,5 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { HttpBearerGuard } from 'src/auth/http-bearer.guard';
+import { HttpBearerGuard } from '../auth/http-bearer.guard';
 
 @Controller('users')
 @UseGuards(HttpBearerGuard)
