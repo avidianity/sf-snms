@@ -3,11 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { SocketModule } from './socket/socket.module';
 import { AuthModule } from './auth/auth.module';
-import { resolve } from 'path';
 import { diskStorage } from 'multer';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserModule } from './user/user.module';
 import mimeTypes from 'mime-types';
+import { STORAGE_PATH } from './constants';
 
 @Module({
 	imports: [
@@ -17,7 +17,7 @@ import mimeTypes from 'mime-types';
 		}),
 		MulterModule.register({
 			storage: diskStorage({
-				destination: resolve(__dirname, '../storage'),
+				destination: STORAGE_PATH,
 				filename: (_, { fieldname, mimetype, filename }, callback) => {
 					const extension = mimeTypes.extension(mimetype);
 					if (!extension) {
