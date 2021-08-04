@@ -4,10 +4,14 @@ import { AppModule } from './app.module';
 import { PrismaService } from './prisma/prisma.service';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { SocketService } from './socket/socket.service';
+import '@avidian/extras';
+import { json, urlencoded } from 'express';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 
+	app.use(urlencoded({ extended: true }));
+	app.use(json());
 	app.useGlobalPipes(
 		new ValidationPipe({
 			transform: true,

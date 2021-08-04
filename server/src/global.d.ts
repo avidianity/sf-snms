@@ -10,7 +10,10 @@ declare global {
 	}
 
 	namespace Express {
-		interface User extends UserModel {}
+		interface User {
+			user: UserModel;
+			token: Token;
+		}
 	}
 }
 

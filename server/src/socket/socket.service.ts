@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { createClient } from 'redis';
 import { ConfigService } from '@nestjs/config';
@@ -7,9 +7,12 @@ import {
 	EventNames,
 	EventParams,
 	EventsMap,
+	ReservedOrUserEventNames,
+	ReservedOrUserListener,
 } from 'socket.io/dist/typed-events';
 import { User } from '@prisma/client';
 import { AuthService } from 'src/auth/auth.service';
+import { ExtendedError } from 'socket.io/dist/namespace';
 
 type Users = Array<{ user: User; id: string }>;
 
@@ -64,7 +67,7 @@ export class SocketService {
 	}
 
 	init() {
-		this.server.use(async (socket, next) => {
+		this.use(async (socket, next) => {
 			try {
 				let header = '';
 
@@ -97,7 +100,7 @@ export class SocketService {
 
 				const { user, token } = payload;
 
-				socket.user = user;
+				socket.user = user as User;
 				socket.token = token;
 
 				return next();
@@ -106,12 +109,12 @@ export class SocketService {
 			}
 		});
 
-		this.server.on('connection', (socket) => {
+		this.on('connection', (socket: Socket) => {
 			this.connections++;
 
 			this.users.push({ user: socket.user, id: socket.id });
 
-			this.server.emit(`connect.${socket.user.id}`);
+			this.emit(`connect.${socket.user.id}`);
 
 			socket.on('disconnect', async () => {
 				this.connections--;
@@ -122,17 +125,31 @@ export class SocketService {
 
 				this.users.splice(index, 1);
 
-				this.server.emit(`disconnect.${socket.user.id}`);
+				this.emit(`disconnect.${socket.user.id}`);
 			});
 		});
 	}
 
 	emit<Ev extends EventNames<EventsMap>>(
 		ev: Ev,
-
 		...args: EventParams<EventsMap, Ev>
 	): boolean {
 		return this.server.emit(ev, ...args);
+	}
+
+	on<Ev extends ReservedOrUserEventNames<EventsMap, EventsMap>>(
+		ev: Ev,
+		listener: ReservedOrUserListener<EventsMap, EventsMap, Ev>,
+	) {
+		this.server.on(ev, listener);
+
+		return this;
+	}
+
+	use(fn: (socket: Socket, next: (err?: ExtendedError) => void) => void) {
+		this.server.use(fn);
+
+		return this;
 	}
 
 	count() {
