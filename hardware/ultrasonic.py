@@ -6,12 +6,12 @@ from json import dumps
 TRIG = int(argv[1])
 ECHO = int(argv[2])
 
-GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.output(TRIG, GPIO.LOW)
 
-GPIO.setmode(ECHO, GPIO.IN)
+GPIO.setup(ECHO, GPIO.IN)
 
 sleep(0.1)
 

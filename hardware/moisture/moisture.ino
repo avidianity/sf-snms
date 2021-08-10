@@ -6,7 +6,7 @@ void setup()
 void loop()
 {
     int value = analogRead(A0);
-    int moisture = 100 - map(value, 0, 1023, 0, 100);
+    float moisture = (value / 1023) * 100;
 
     Serial.print("{\"moisture\":");
     Serial.print(moisture);

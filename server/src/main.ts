@@ -1,9 +1,9 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { PrismaService } from './prisma/prisma.service';
+import { PrismaService } from './app/prisma/prisma.service';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { SocketService } from './socket/socket.service';
+import { SocketService } from './app/socket/socket.service';
 import '@avidian/extras';
 import { json, urlencoded } from 'express';
 
@@ -39,8 +39,10 @@ async function bootstrap() {
 	const document = SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup('api', app, document);
 
-	await app.listen(process.env.PORT || 8000, () => {
-		console.log('\nServer Running');
+	const port = process.env.PORT ? process.env.PORT.toNumber() : 8000;
+
+	await app.listen(port, () => {
+		console.log('\nServer Running', port);
 	});
 }
 

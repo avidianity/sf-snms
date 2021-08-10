@@ -1,4 +1,4 @@
 # TODO
 
-Services for calling scripts
-Soft UI in Web
+- [x] Services for calling scripts
+- [ ] Soft UI in Web
