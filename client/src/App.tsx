@@ -472,14 +472,12 @@ function App() {
 									</a>
 								</li>
 								<li className='nav-item d-xl-none ps-3 pe-0 d-flex align-items-center'>
-									<a href='#' className='nav-link text-white p-0'>
-										<a href='#' className='nav-link text-body p-0' id='iconNavbarSidenav'>
-											<div className='sidenav-toggler-inner'>
-												<i className='sidenav-toggler-line bg-white'></i>
-												<i className='sidenav-toggler-line bg-white'></i>
-												<i className='sidenav-toggler-line bg-white'></i>
-											</div>
-										</a>
+									<a href='#' className='nav-link text-white text-body p-0' id='iconNavbarSidenav'>
+										<div className='sidenav-toggler-inner'>
+											<i className='sidenav-toggler-line bg-white'></i>
+											<i className='sidenav-toggler-line bg-white'></i>
+											<i className='sidenav-toggler-line bg-white'></i>
+										</div>
 									</a>
 								</li>
 								<li className='nav-item px-3 d-flex align-items-center'>
@@ -751,12 +749,7 @@ function App() {
 									<ul className='list-group'>
 										<li className='list-group-item border-0 px-0'>
 											<div className='form-check form-switch ps-0'>
-												<input
-													className='form-check-input ms-auto'
-													type='checkbox'
-													id='flexSwitchCheckDefault'
-													checked
-												/>
+												<input className='form-check-input ms-auto' type='checkbox' id='flexSwitchCheckDefault' />
 												<label
 													className='form-check-label text-body ms-3 text-truncate w-80 mb-0'
 													htmlFor='flexSwitchCheckDefault'>
@@ -776,12 +769,7 @@ function App() {
 										</li>
 										<li className='list-group-item border-0 px-0'>
 											<div className='form-check form-switch ps-0'>
-												<input
-													className='form-check-input ms-auto'
-													type='checkbox'
-													id='flexSwitchCheckDefault2'
-													checked
-												/>
+												<input className='form-check-input ms-auto' type='checkbox' id='flexSwitchCheckDefault2' />
 												<label
 													className='form-check-label text-body ms-3 text-truncate w-80 mb-0'
 													htmlFor='flexSwitchCheckDefault2'>
@@ -804,12 +792,7 @@ function App() {
 										</li>
 										<li className='list-group-item border-0 px-0'>
 											<div className='form-check form-switch ps-0'>
-												<input
-													className='form-check-input ms-auto'
-													type='checkbox'
-													id='flexSwitchCheckDefault4'
-													checked
-												/>
+												<input className='form-check-input ms-auto' type='checkbox' id='flexSwitchCheckDefault4' />
 												<label
 													className='form-check-label text-body ms-3 text-truncate w-80 mb-0'
 													htmlFor='flexSwitchCheckDefault4'>

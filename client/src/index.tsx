@@ -4,7 +4,7 @@ import './boot';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import './styles/soft-ui-dashboard.scss';
+import './styles/index.scss';
 
 const render = () =>
 	ReactDOM.render(

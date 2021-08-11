@@ -5,7 +5,7 @@ import { AppModule } from './../src/app.module';
 import faker from 'faker';
 import '@avidian/extras';
 import { hash } from 'bcrypt';
-import { PrismaService } from '../src/prisma/prisma.service';
+import { PrismaService } from '../src/app/prisma/prisma.service';
 
 describe('App (e2e)', () => {
 	let app: INestApplication;

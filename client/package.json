@@ -20,6 +20,8 @@
 		"@avidian/extras": "^0.0.8",
 		"@avidian/functions": "^1.0.1",
 		"@avidian/state": "^1.0.0",
+		"@fontsource/lato": "^4.5.0",
+		"@fontsource/open-sans": "^4.5.0",
 		"@material-ui/core": "^4.12.3",
 		"@material-ui/icons": "^4.11.2",
 		"@popperjs/core": "2.9.2",
