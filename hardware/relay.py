@@ -14,4 +14,4 @@ if mode == 'on':
 elif mode == 'off':
     GPIO.output(pin, GPIO.LOW)
 
-GPIO.cleanup()
+sleep(0.001)
