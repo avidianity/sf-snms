@@ -1,7 +1,8 @@
 import { Tooltip } from 'bootstrap';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { useState, useEffect } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { AuthContext } from './contexts';
 
 export function useURL() {
 	const match = useRouteMatch();
@@ -25,6 +26,15 @@ export function useNullable<T>(data?: T) {
 
 export function useArray<T>(data?: T[]) {
 	return useState<T[]>(data || []);
+}
+
+export function usePreventAuth() {
+	const history = useHistory();
+	const { user } = useContext(AuthContext);
+
+	if (user) {
+		history.goBack();
+	}
 }
 
 export function useSetup() {

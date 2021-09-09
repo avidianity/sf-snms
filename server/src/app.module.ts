@@ -9,6 +9,7 @@ import { UserModule } from './app/user/user.module';
 import mimeTypes from 'mime-types';
 import { STORAGE_PATH } from './constants';
 import { HardwareModule } from './app/hardware/hardware.module';
+import { DeviceModule } from './app/device/device.module';
 
 @Module({
 	imports: [
@@ -39,6 +40,7 @@ import { HardwareModule } from './app/hardware/hardware.module';
 		AuthModule,
 		UserModule,
 		HardwareModule,
+		DeviceModule,
 	],
 	controllers: [],
 	providers: [],

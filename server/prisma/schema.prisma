@@ -25,3 +25,24 @@ model Token {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
+
+enum DeviceTypes {
+    DHT
+    ULTRASONIC
+    WATER
+    PERISTALTIC
+    RELAY
+}
+
+enum DeviceStatus {
+    USED
+    STANDBY
+    UNAVAILABLE
+}
+
+model Devices {
+    id     Int          @id @default(autoincrement())
+    name   String       @unique
+    type   DeviceTypes
+    status DeviceStatus @default(STANDBY)
+}
