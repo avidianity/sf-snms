@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { usePreventAuth } from '../../hooks';
 import Card from '../Shared/Card';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import State from '@avidian/state';
 import { useHistory } from 'react-router';
 import { errorToStrings } from '../../helpers';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react-router/node_modules/@types/react';
+import { AuthContext } from '../../contexts';
 
 type Props = {};
 
@@ -21,7 +21,7 @@ const SignIn: FC<Props> = (props) => {
 	const [processing, setProcessing] = useState(false);
 	usePreventAuth();
 	const history = useHistory();
-
+	const { setUser, setToken } = useContext(AuthContext);
 	const { register, handleSubmit, reset } = useForm<Inputs>();
 
 	const submit = async (data: Inputs) => {
@@ -29,11 +29,13 @@ const SignIn: FC<Props> = (props) => {
 		try {
 			const {
 				data: { user, token },
-			} = await axios.post<{ user: UserContract; token: string }>('/auth/register', data);
+			} = await axios.post<{ user: UserContract; token: string }>('/auth/login', data);
 
 			const state = State.getInstance();
 
 			state.set('user', user).set('token', token);
+			setUser(user);
+			setToken(token);
 
 			await Swal.fire({
 				icon: 'success',
@@ -69,7 +71,7 @@ const SignIn: FC<Props> = (props) => {
 						</div>
 						<div className='form-group col-12'>
 							<button type='submit' className='btn btn-primary btn-sm' disabled={processing}>
-								Sign In
+								{processing ? <i className='material-icons spin'>autorenew</i> : 'Sign In'}
 							</button>
 						</div>
 					</form>

@@ -1,6 +1,12 @@
 @import './soft-ui-dashboard.scss';
 @import '@fontsource/open-sans';
 @import '@fontsource/lato';
+@import '@fontsource/material-icons';
+@import './animations';
+
+@mixin spinner {
+	animation: spinning 2000ms linear infinite;
+}
 
 * {
 	font-family: 'Lato', 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,4 +14,12 @@
 
 #sidenav-main {
 	background-color: #fff !important;
+}
+
+.btn-sm > .material-icons {
+	font-size: 1rem !important;
+}
+
+.spin {
+	@include spinner;
 }

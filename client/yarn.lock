@@ -1293,6 +1293,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/lato/-/lato-4.5.0.tgz#c248b083be330daafade76995fed9088d5b76c04"
   integrity sha512-Y1qluoF+5b2U6MWcEz70+euZwl4TEV+9v7nZCmuRgNHb5McYc3VmbNmYNEiLsnb1HHwlAHA70P/LktP9EJ61ag==
 
+"@fontsource/material-icons@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/material-icons/-/material-icons-4.5.0.tgz#8b9e5d84a1f3fac973118c8283b000b352b44d7f"
+  integrity sha512-vFMpnkKwbtJLLHbUDI163QWX9Ox28A6i1vALfAKlpBh54yp8D0cu1/YGyrU5whvaXejLSBuyS7lRwr/TdRNmhA==
+
 "@fontsource/open-sans@^4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.0.tgz#e6d05dfdfe74580001010302f9c418067b45a6a9"

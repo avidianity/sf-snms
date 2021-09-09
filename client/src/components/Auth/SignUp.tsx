@@ -1,9 +1,10 @@
 import State from '@avidian/state';
 import axios from 'axios';
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../contexts';
 import { UserContract } from '../../contracts/user.contract';
 import { errorToStrings } from '../../helpers';
 import { usePreventAuth } from '../../hooks';
@@ -21,7 +22,7 @@ const SignUp: FC<Props> = (props) => {
 	const [processing, setProcessing] = useState(false);
 	usePreventAuth();
 	const history = useHistory();
-
+	const { setUser, setToken } = useContext(AuthContext);
 	const { register, handleSubmit, reset } = useForm<Inputs>();
 
 	const submit = async (data: Inputs) => {
@@ -29,11 +30,13 @@ const SignUp: FC<Props> = (props) => {
 		try {
 			const {
 				data: { user, token },
-			} = await axios.post<{ user: UserContract; token: string }>('/auth/login', data);
+			} = await axios.post<{ user: UserContract; token: string }>('/auth/register', data);
 
 			const state = State.getInstance();
 
 			state.set('user', user).set('token', token);
+			setUser(user);
+			setToken(token);
 
 			await Swal.fire({
 				icon: 'success',
@@ -73,7 +76,7 @@ const SignUp: FC<Props> = (props) => {
 						</div>
 						<div className='form-group col-12'>
 							<button type='submit' className='btn btn-primary btn-sm' disabled={processing}>
-								Sign Up
+								{processing ? <i className='material-icons spin'>autorenew</i> : 'Sign Up'}
 							</button>
 						</div>
 					</form>
