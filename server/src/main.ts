@@ -6,6 +6,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { SocketService } from './app/socket/socket.service';
 import '@avidian/extras';
 import { json, urlencoded } from 'express';
+import { HardwareExceptionFilter } from './exceptions/filters/hardware.filter';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -17,6 +18,7 @@ async function bootstrap() {
 			transform: true,
 		}),
 	);
+	app.useGlobalFilters(new HardwareExceptionFilter());
 	app.enableCors({
 		credentials: true,
 		origin: (origin, callback) => callback(null, origin),

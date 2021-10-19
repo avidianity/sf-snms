@@ -1,9 +1,13 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { exec as parentExec } from 'child_process';
 import { resolve } from 'path';
 import { promisify } from 'util';
 import { SCRIPTS_PATH } from '../../constants';
+import { ArduinoException } from '../../exceptions/arduino.exception';
+import { DHT11Exception } from '../../exceptions/dht11.exception';
+import { RelayException } from '../../exceptions/relay.exception';
+import { UltrasonicException } from '../../exceptions/ultrasonic.exception';
 import { Arduino } from '../../interfaces/arduino.interface';
 import { DHT11 } from '../../interfaces/dht11.interface';
 import { Ultrasonic } from '../../interfaces/ultrasonic.interface';
@@ -18,10 +22,14 @@ export class HardwareService {
 		const path = resolve(SCRIPTS_PATH, 'dht11.py');
 		const pin = this.config.get<number>('DHT11_PIN');
 
+		if (!pin) {
+			throw new Error('DHT11 pin not defined.');
+		}
+
 		const { stdout, stderr } = await exec(`python3 ${path} ${pin}`);
 
 		if (stderr) {
-			throw new InternalServerErrorException(stderr);
+			throw new DHT11Exception(stderr);
 		}
 
 		return JSON.parse(stdout) as DHT11;
@@ -33,7 +41,7 @@ export class HardwareService {
 		const { stderr } = await exec(`python3 ${path} ${pin} ${mode}`);
 
 		if (stderr) {
-			throw new InternalServerErrorException(stderr);
+			throw new RelayException(stderr);
 		}
 	}
 
@@ -45,100 +53,109 @@ export class HardwareService {
 		);
 
 		if (stderr) {
-			throw new InternalServerErrorException(stderr);
+			throw new UltrasonicException(stderr);
 		}
 
 		return JSON.parse(stdout) as Ultrasonic;
 	}
 
 	async waterMainLevel() {
-		const relayPin = this.config.get<number>(
-			'WATER_MAIN_ULTRASONIC_RELAY_PIN',
-		);
 		const trigger = this.config.get<number>(
 			'WATER_MAIN_ULTRASONIC_TRIGGER_PIN',
 		);
+
+		if (!trigger) {
+			throw new Error('Water Main trigger pin not defined.');
+		}
+
 		const echo = this.config.get<number>('WATER_MAIN_ULTRASONIC_ECHO_PIN');
 
-		await this.relay(relayPin, 'on');
+		if (!echo) {
+			throw new Error('Water Main echo pin not defined.');
+		}
 
 		const response = await this.ultrasonic(trigger, echo);
-
-		await this.relay(relayPin, 'off');
 
 		return response;
 	}
 
 	async waterBackupLevel() {
-		const relayPin = this.config.get<number>(
-			'WATER_BACKUP_ULTRASONIC_RELAY_PIN',
-		);
 		const trigger = this.config.get<number>(
 			'WATER_BACKUP_ULTRASONIC_TRIGGER_PIN',
 		);
+
 		const echo = this.config.get<number>(
 			'WATER_BACKUP_ULTRASONIC_ECHO_PIN',
 		);
 
-		await this.relay(relayPin, 'on');
+		if (!trigger) {
+			throw new Error('Water Backup trigger pin not defined.');
+		}
+
+		if (!echo) {
+			throw new Error('Water Backup echo pin not defined.');
+		}
 
 		const response = await this.ultrasonic(trigger, echo);
-
-		await this.relay(relayPin, 'off');
 
 		return response;
 	}
 
 	async nitrogenLevel() {
-		const relayPin = this.config.get<number>(
-			'NITROGEN_ULTRASONIC_RELAY_PIN',
-		);
 		const trigger = this.config.get<number>(
 			'NITROGEN_ULTRASONIC_TRIGGER_PIN',
 		);
+
 		const echo = this.config.get<number>('NITROGEN_ULTRASONIC_ECHO_PIN');
 
-		await this.relay(relayPin, 'on');
+		if (!trigger) {
+			throw new Error('Nitrogen trigger pin not defined.');
+		}
+
+		if (!echo) {
+			throw new Error('Nitrogen echo pin not defined.');
+		}
 
 		const response = await this.ultrasonic(trigger, echo);
-
-		await this.relay(relayPin, 'off');
 
 		return response;
 	}
 
 	async phosphorusLevel() {
-		const relayPin = this.config.get<number>(
-			'PHOSPHORUS_ULTRASONIC_RELAY_PIN',
-		);
 		const trigger = this.config.get<number>(
 			'PHOSPHORUS_ULTRASONIC_TRIGGER_PIN',
 		);
+
 		const echo = this.config.get<number>('PHOSPHORUS_ULTRASONIC_ECHO_PIN');
 
-		await this.relay(relayPin, 'on');
+		if (!trigger) {
+			throw new Error('Phosphorus trigger pin not defined.');
+		}
+
+		if (!echo) {
+			throw new Error('Phosphorus echo pin not defined.');
+		}
 
 		const response = await this.ultrasonic(trigger, echo);
-
-		await this.relay(relayPin, 'off');
 
 		return response;
 	}
 
 	async potassiumLevel() {
-		const relayPin = this.config.get<number>(
-			'POTASSIUM_ULTRASONIC_RELAY_PIN',
-		);
 		const trigger = this.config.get<number>(
 			'POTASSIUM_ULTRASONIC_TRIGGER_PIN',
 		);
 		const echo = this.config.get<number>('POTASSIUM_ULTRASONIC_ECHO_PIN');
 
-		await this.relay(relayPin, 'on');
+		if (!trigger) {
+			throw new Error('Potassium trigger pin not defined.');
+		}
+
+		if (!echo) {
+			throw new Error('Potassium echo pin not defined.');
+		}
 
 		const response = await this.ultrasonic(trigger, echo);
-
-		await this.relay(relayPin, 'off');
 
 		return response;
 	}
@@ -146,11 +163,19 @@ export class HardwareService {
 	async toggleWaterMain(mode: 'on' | 'off') {
 		const pin = this.config.get<number>('WATER_MAIN_RELAY_PIN');
 
+		if (!pin) {
+			throw new Error('Water Main relay pin not defined.');
+		}
+
 		await this.relay(pin, mode);
 	}
 
 	async toggleWaterBackup(mode: 'on' | 'off') {
 		const pin = this.config.get<number>('WATER_BACKUP_RELAY_PIN');
+
+		if (!pin) {
+			throw new Error('Water Backup relay pin not defined.');
+		}
 
 		await this.relay(pin, mode);
 	}
@@ -158,17 +183,29 @@ export class HardwareService {
 	async toggleNitrogen(mode: 'on' | 'off') {
 		const pin = this.config.get<number>('NITROGEN_RELAY_PIN');
 
+		if (!pin) {
+			throw new Error('Nitrogen relay pin not defined.');
+		}
+
 		await this.relay(pin, mode);
 	}
 
 	async togglePhosphorus(mode: 'on' | 'off') {
 		const pin = this.config.get<number>('PHOSPHORUS_RELAY_PIN');
 
+		if (!pin) {
+			throw new Error('Phosphorus relay pin not defined.');
+		}
+
 		await this.relay(pin, mode);
 	}
 
 	async togglePotassium(mode: 'on' | 'off') {
 		const pin = this.config.get<number>('POTASSIUM_RELAY_PIN');
+
+		if (!pin) {
+			throw new Error('Potassium relay pin not defined.');
+		}
 
 		await this.relay(pin, mode);
 	}
@@ -177,10 +214,14 @@ export class HardwareService {
 		const path = resolve(SCRIPTS_PATH, 'arduino.py');
 		const port = this.config.get<string>('ARDUINO_PORT');
 
+		if (!port) {
+			throw new Error('Arduino port not defined.');
+		}
+
 		const { stdout, stderr } = await exec(`python3 ${path} ${port}`);
 
 		if (stderr) {
-			throw new InternalServerErrorException(stderr);
+			throw new ArduinoException(stderr);
 		}
 
 		return JSON.parse(stdout) as Arduino;

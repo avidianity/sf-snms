@@ -32,6 +32,7 @@ enum DeviceTypes {
     WATER
     PERISTALTIC
     RELAY
+    ARDUINO
 }
 
 enum DeviceStatus {
@@ -41,8 +42,9 @@ enum DeviceStatus {
 }
 
 model Devices {
-    id     Int          @id @default(autoincrement())
-    name   String       @unique
-    type   DeviceTypes
-    status DeviceStatus @default(STANDBY)
+    id      Int          @id @default(autoincrement())
+    name    String       @unique
+    type    DeviceTypes
+    status  DeviceStatus @default(STANDBY)
+    payload Json
 }

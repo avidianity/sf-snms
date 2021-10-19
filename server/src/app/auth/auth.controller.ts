@@ -26,13 +26,13 @@ export class AuthController {
 	@Get('/check')
 	@UseGuards(HttpBearerGuard)
 	async check(@Req() req: Request) {
-		return req.user.user;
+		return req.user?.user;
 	}
 
 	@Get('/logout')
 	@UseGuards(HttpBearerGuard)
 	async logout(@Req() req: Request) {
-		const { token } = req.user;
+		const { token } = req.user!;
 		await this.prisma.token.delete({ where: { id: token.id } });
 	}
 }

@@ -10,7 +10,7 @@ import {
 @ValidatorConstraint({ async: true })
 export class ExistsContraint implements ValidatorConstraintInterface {
 	async validate(value: any, args: ValidationArguments) {
-		const prisma = new PrismaClient();
+		const prisma: any = new PrismaClient();
 
 		await prisma.$connect();
 
@@ -56,7 +56,7 @@ export function Exists(
 @ValidatorConstraint({ async: true })
 export class UniqueContraint implements ValidatorConstraintInterface {
 	async validate(value: any, args: ValidationArguments) {
-		const prisma = new PrismaClient();
+		const prisma: any = new PrismaClient();
 
 		await prisma.$connect();
 
