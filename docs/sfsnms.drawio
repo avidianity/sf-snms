@@ -1,1 +1,115 @@
-<mxfile host="app.diagrams.net" modified="2021-10-19T11:58:51.497Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" version="15.5.5" etag="pcFn5c5-nb8E3lVl_0L3" type="github"><diagram id="w5ddGwVRLNwGeoixs6e9">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-10-19T12:04:44.573Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" etag="DS593L38sAimN1JZfQOx" version="15.5.5" type="github">
+  <diagram id="w5ddGwVRLNwGeoixs6e9" name="Page-1">
+    <mxGraphModel dx="1422" dy="745" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="k9r348tsoedcz19YQHqC-1" value="&lt;font style=&quot;font-size: 18px&quot;&gt;Plant Box&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="420" width="180" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" edge="1" parent="1" target="k9r348tsoedcz19YQHqC-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="230" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="145" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-2" value="Nitrogen" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="90" y="180" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="230" as="sourcePoint" />
+            <mxPoint x="335" y="460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="280" y="460" />
+              <mxPoint x="335" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-3" value="Phosphorus" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="225" y="180" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" target="k9r348tsoedcz19YQHqC-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="230" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-4" value="Potassium" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="370" y="180" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" target="k9r348tsoedcz19YQHqC-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="565" y="230" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="565" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-5" value="Water&lt;br&gt;(Main)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="510" y="180" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" edge="1" parent="1" target="k9r348tsoedcz19YQHqC-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="705" y="230" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="705" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-6" value="Water&lt;br&gt;(Backup)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="650" y="180" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-12" target="k9r348tsoedcz19YQHqC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-12" value="Ultrasonic&lt;br&gt;Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="90" y="70" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-13" target="k9r348tsoedcz19YQHqC-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-13" value="Ultrasonic&lt;br&gt;Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="225" y="70" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-14" target="k9r348tsoedcz19YQHqC-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-14" value="Ultrasonic&lt;br&gt;Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="370" y="70" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-15" target="k9r348tsoedcz19YQHqC-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-15" value="Ultrasonic&lt;br&gt;Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="510" y="70" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-16" target="k9r348tsoedcz19YQHqC-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-16" value="Ultrasonic&lt;br&gt;Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="650" y="70" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-22" target="k9r348tsoedcz19YQHqC-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="665" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-22" value="DHT11&lt;br&gt;(Temperature,&lt;br&gt;Humidity)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="75" y="610" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;" edge="1" parent="1" source="k9r348tsoedcz19YQHqC-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k9r348tsoedcz19YQHqC-24" value="Moisture Sensor" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="635" y="610" width="140" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
