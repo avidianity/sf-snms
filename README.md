@@ -26,7 +26,7 @@ __Electronics__:
 
 - [x] Water Pump
 
-- [ ] Outlet
+- [x] Outlet
 
 - [x] Plastic Water Tank
 
@@ -64,36 +64,22 @@ Netlify
 
 ## Features
 
-- [ ] Water Pump controllable
+- [x] Water Pump controllable
 
-- [ ] Nutrient dispenser
+- [x] Nutrient dispenser
 
-- [ ] Water content monitor
+- [x] Water content monitor
 
 - [ ] Plant modules
 
-- [ ] Temperature monitor
+- [x] Temperature monitor
 
-- [ ] Humidity monitor
+- [x] Humidity monitor
 
 - [ ] Soil pH monitor
-
-- [ ] User-Defined Interval Presets
-
-- [ ] Notification System (Email and SMS)
-
-- [ ] User-Defined Distribution Throttling
-
-- [ ] Generate Daily, Weekly, Monthly, Yearly usage reports (Excel, PDF format)
-
-- [ ] Auto generate logs of activities
 
 - [ ] Limit water distribution
 
 - [ ] Remote controlling
 
-- [ ] Plant Brochure
-
 - [ ] User Manual
-
-- [ ] Recycleable Water Distributions
