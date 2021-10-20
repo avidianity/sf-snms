@@ -45,7 +45,7 @@ const SignUp: FC<Props> = (props) => {
 
 			reset();
 
-			history.push('/home');
+			history.push('/dashboard');
 		} catch (error) {
 			const messages = errorToStrings(error);
 			await Swal.fire({

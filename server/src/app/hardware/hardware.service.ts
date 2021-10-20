@@ -23,7 +23,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('DHT11_PIN');
 
 		if (!pin) {
-			throw new Error('DHT11 pin not defined.');
+			throw new DHT11Exception('DHT11 pin not defined.');
 		}
 
 		const { stdout, stderr } = await exec(`python3 ${path} ${pin}`);
@@ -65,13 +65,15 @@ export class HardwareService {
 		);
 
 		if (!trigger) {
-			throw new Error('Water Main trigger pin not defined.');
+			throw new UltrasonicException(
+				'Water Main trigger pin not defined.',
+			);
 		}
 
 		const echo = this.config.get<number>('WATER_MAIN_ULTRASONIC_ECHO_PIN');
 
 		if (!echo) {
-			throw new Error('Water Main echo pin not defined.');
+			throw new UltrasonicException('Water Main echo pin not defined.');
 		}
 
 		const response = await this.ultrasonic(trigger, echo);
@@ -89,11 +91,13 @@ export class HardwareService {
 		);
 
 		if (!trigger) {
-			throw new Error('Water Backup trigger pin not defined.');
+			throw new UltrasonicException(
+				'Water Backup trigger pin not defined.',
+			);
 		}
 
 		if (!echo) {
-			throw new Error('Water Backup echo pin not defined.');
+			throw new UltrasonicException('Water Backup echo pin not defined.');
 		}
 
 		const response = await this.ultrasonic(trigger, echo);
@@ -109,11 +113,11 @@ export class HardwareService {
 		const echo = this.config.get<number>('NITROGEN_ULTRASONIC_ECHO_PIN');
 
 		if (!trigger) {
-			throw new Error('Nitrogen trigger pin not defined.');
+			throw new UltrasonicException('Nitrogen trigger pin not defined.');
 		}
 
 		if (!echo) {
-			throw new Error('Nitrogen echo pin not defined.');
+			throw new UltrasonicException('Nitrogen echo pin not defined.');
 		}
 
 		const response = await this.ultrasonic(trigger, echo);
@@ -129,11 +133,13 @@ export class HardwareService {
 		const echo = this.config.get<number>('PHOSPHORUS_ULTRASONIC_ECHO_PIN');
 
 		if (!trigger) {
-			throw new Error('Phosphorus trigger pin not defined.');
+			throw new UltrasonicException(
+				'Phosphorus trigger pin not defined.',
+			);
 		}
 
 		if (!echo) {
-			throw new Error('Phosphorus echo pin not defined.');
+			throw new UltrasonicException('Phosphorus echo pin not defined.');
 		}
 
 		const response = await this.ultrasonic(trigger, echo);
@@ -148,11 +154,11 @@ export class HardwareService {
 		const echo = this.config.get<number>('POTASSIUM_ULTRASONIC_ECHO_PIN');
 
 		if (!trigger) {
-			throw new Error('Potassium trigger pin not defined.');
+			throw new UltrasonicException('Potassium trigger pin not defined.');
 		}
 
 		if (!echo) {
-			throw new Error('Potassium echo pin not defined.');
+			throw new UltrasonicException('Potassium echo pin not defined.');
 		}
 
 		const response = await this.ultrasonic(trigger, echo);
@@ -164,7 +170,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('WATER_MAIN_RELAY_PIN');
 
 		if (!pin) {
-			throw new Error('Water Main relay pin not defined.');
+			throw new RelayException('Water Main relay pin not defined.');
 		}
 
 		await this.relay(pin, mode);
@@ -174,7 +180,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('WATER_BACKUP_RELAY_PIN');
 
 		if (!pin) {
-			throw new Error('Water Backup relay pin not defined.');
+			throw new RelayException('Water Backup relay pin not defined.');
 		}
 
 		await this.relay(pin, mode);
@@ -184,7 +190,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('NITROGEN_RELAY_PIN');
 
 		if (!pin) {
-			throw new Error('Nitrogen relay pin not defined.');
+			throw new RelayException('Nitrogen relay pin not defined.');
 		}
 
 		await this.relay(pin, mode);
@@ -194,7 +200,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('PHOSPHORUS_RELAY_PIN');
 
 		if (!pin) {
-			throw new Error('Phosphorus relay pin not defined.');
+			throw new RelayException('Phosphorus relay pin not defined.');
 		}
 
 		await this.relay(pin, mode);
@@ -204,7 +210,7 @@ export class HardwareService {
 		const pin = this.config.get<number>('POTASSIUM_RELAY_PIN');
 
 		if (!pin) {
-			throw new Error('Potassium relay pin not defined.');
+			throw new RelayException('Potassium relay pin not defined.');
 		}
 
 		await this.relay(pin, mode);
@@ -215,7 +221,7 @@ export class HardwareService {
 		const port = this.config.get<string>('ARDUINO_PORT');
 
 		if (!port) {
-			throw new Error('Arduino port not defined.');
+			throw new ArduinoException('Arduino port not defined.');
 		}
 
 		const { stdout, stderr } = await exec(`python3 ${path} ${port}`);

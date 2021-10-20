@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    image: avidian/sfsnms
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    depends_on:
+      - database
+      - queue
+    networks:
+      - net
+    environment:
+      PORT: 8000
+      DB_CONNECTION: postgres
+      DB_HOST: sfsnms-db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: secret
+      DB_NAME: sfsnms
+      REDIS_HOST: sfsnms-redis
+      REDIS_PASSWORD: null
+      REDIS_PORT: 6379
+  database:
+    container_name: sfsnms-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: sfsnms
+    volumes:
+      - sfsnms-database:/var/lib/postgresql/data
+    ports:
+      - 2158:5432
+    networks:
+      - net
+  queue:
+    image: redis:6.0
+    container_name: sfsnms-redis
+    restart: unless-stopped
+    ports:
+      - 8725:6379
+    networks:
+      - net
+networks:
+  net:
+    internal: false
+    driver: bridge
+
+volumes:
+  sfsnms-database:
+    driver: local

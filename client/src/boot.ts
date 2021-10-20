@@ -5,6 +5,10 @@ import 'perfect-scrollbar';
 import axios from 'axios';
 import { SERVER_URL } from './constants';
 import State from '@avidian/state';
+import toastr from 'toastr';
+import '@avidian/extras';
+
+window.toastr = toastr;
 
 const state = State.getInstance();
 

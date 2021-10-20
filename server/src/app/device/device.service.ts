@@ -27,7 +27,7 @@ export class DeviceService {
 		});
 	}
 
-	@Cron(CronExpression.EVERY_10_SECONDS)
+	@Cron(CronExpression.EVERY_30_SECONDS)
 	protected syncDevices() {
 		this.syncDHT();
 		this.syncWaterMainLevel();
@@ -39,15 +39,15 @@ export class DeviceService {
 	}
 
 	protected async syncDHT() {
+		const dht = await this.prisma.devices.findFirst({
+			where: {
+				type: 'DHT',
+			},
+		});
+
 		try {
 			this.logger.log('Syncing DHT11');
 			const data = await this.hardware.dht11();
-
-			const dht = await this.prisma.devices.findFirst({
-				where: {
-					type: 'DHT',
-				},
-			});
 
 			if (dht) {
 				await this.prisma.devices.update({
@@ -55,7 +55,6 @@ export class DeviceService {
 						id: dht.id,
 					},
 					data: {
-						type: 'DHT',
 						payload: {
 							...data,
 						},
@@ -66,6 +65,7 @@ export class DeviceService {
 					data: {
 						type: 'DHT',
 						name: 'DHT11',
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -75,23 +75,42 @@ export class DeviceService {
 
 			this.logger.log('Syncing DHT11 Done');
 		} catch (error) {
+			if (dht) {
+				await this.prisma.devices.update({
+					where: {
+						id: dht.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'DHT',
+						name: 'DHT11',
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Syncing DHT11 Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncWaterMainLevel() {
+		const waterMainLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ULTRASONIC',
+				name: UltrasonicNames.WATER_MAIN,
+			},
+		});
+
 		try {
 			this.logger.log('Syncing Water Main Level');
 
 			const data = await this.hardware.waterMainLevel();
-
-			const waterMainLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ULTRASONIC',
-					name: UltrasonicNames.WATER_MAIN,
-				},
-			});
 
 			if (waterMainLevel) {
 				await this.prisma.devices.update({
@@ -99,6 +118,7 @@ export class DeviceService {
 						id: waterMainLevel.id,
 					},
 					data: {
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -109,6 +129,7 @@ export class DeviceService {
 					data: {
 						type: 'ULTRASONIC',
 						name: UltrasonicNames.WATER_MAIN,
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -118,23 +139,42 @@ export class DeviceService {
 
 			this.logger.log('Syncing Water Main Level Done');
 		} catch (error) {
+			if (waterMainLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: waterMainLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ULTRASONIC',
+						name: UltrasonicNames.WATER_MAIN,
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Syncing Water Main Level Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncWaterBackupLevel() {
+		const waterBackupLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ULTRASONIC',
+				name: UltrasonicNames.WATER_BACKUP,
+			},
+		});
+
 		try {
 			this.logger.log('Syncing Water Backup Level');
 
 			const data = await this.hardware.waterBackupLevel();
-
-			const waterBackupLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ULTRASONIC',
-					name: UltrasonicNames.WATER_BACKUP,
-				},
-			});
 
 			if (waterBackupLevel) {
 				await this.prisma.devices.update({
@@ -142,7 +182,6 @@ export class DeviceService {
 						id: waterBackupLevel.id,
 					},
 					data: {
-						type: 'ULTRASONIC',
 						payload: {
 							...data,
 						},
@@ -153,6 +192,7 @@ export class DeviceService {
 					data: {
 						type: 'ULTRASONIC',
 						name: UltrasonicNames.WATER_BACKUP,
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -162,23 +202,42 @@ export class DeviceService {
 
 			this.logger.log('Syncing Water Backup Level Done');
 		} catch (error) {
+			if (waterBackupLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: waterBackupLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ULTRASONIC',
+						name: UltrasonicNames.WATER_BACKUP,
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Syncing Water Backup Level Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncNitrogenLevel() {
+		const nitrogenLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ULTRASONIC',
+				name: UltrasonicNames.NITROGEN,
+			},
+		});
+
 		try {
 			this.logger.log('Nitrogen Level');
 
 			const data = await this.hardware.nitrogenLevel();
-
-			const nitrogenLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ULTRASONIC',
-					name: UltrasonicNames.NITROGEN,
-				},
-			});
 
 			if (nitrogenLevel) {
 				await this.prisma.devices.update({
@@ -186,7 +245,6 @@ export class DeviceService {
 						id: nitrogenLevel.id,
 					},
 					data: {
-						type: 'ULTRASONIC',
 						payload: {
 							...data,
 						},
@@ -197,6 +255,7 @@ export class DeviceService {
 					data: {
 						type: 'ULTRASONIC',
 						name: UltrasonicNames.NITROGEN,
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -206,23 +265,42 @@ export class DeviceService {
 
 			this.logger.log('Nitrogen Level Done');
 		} catch (error) {
+			if (nitrogenLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: nitrogenLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ULTRASONIC',
+						name: UltrasonicNames.NITROGEN,
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Nitrogen Level Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncPhosphorusLevel() {
+		const phosphorusLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ULTRASONIC',
+				name: UltrasonicNames.PHOSPHORUS,
+			},
+		});
+
 		try {
 			this.logger.log('Phosphorus Level');
 
 			const data = await this.hardware.phosphorusLevel();
-
-			const phosphorusLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ULTRASONIC',
-					name: UltrasonicNames.PHOSPHORUS,
-				},
-			});
 
 			if (phosphorusLevel) {
 				await this.prisma.devices.update({
@@ -230,7 +308,7 @@ export class DeviceService {
 						id: phosphorusLevel.id,
 					},
 					data: {
-						type: 'ULTRASONIC',
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -250,23 +328,42 @@ export class DeviceService {
 
 			this.logger.log('Phosphorus Level Done');
 		} catch (error) {
+			if (phosphorusLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: phosphorusLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ULTRASONIC',
+						name: UltrasonicNames.PHOSPHORUS,
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Phosphorus Level Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncPotassiumLevel() {
+		const potassiumLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ULTRASONIC',
+				name: UltrasonicNames.POTASSIUM,
+			},
+		});
+
 		try {
 			this.logger.log('Potassium Level');
 
 			const data = await this.hardware.potassiumLevel();
-
-			const potassiumLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ULTRASONIC',
-					name: UltrasonicNames.POTASSIUM,
-				},
-			});
 
 			if (potassiumLevel) {
 				await this.prisma.devices.update({
@@ -275,6 +372,7 @@ export class DeviceService {
 					},
 					data: {
 						type: 'ULTRASONIC',
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -294,25 +392,41 @@ export class DeviceService {
 
 			this.logger.log('Potassium Level Done');
 		} catch (error) {
+			if (potassiumLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: potassiumLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ULTRASONIC',
+						name: UltrasonicNames.POTASSIUM,
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Potassium Level Error');
 			this.logger.error(error);
 		}
 	}
 
 	protected async syncMoisture() {
+		const potassiumLevel = await this.prisma.devices.findFirst({
+			where: {
+				type: 'ARDUINO',
+			},
+		});
+
 		try {
 			this.logger.log('Moisture');
 
 			const data = await this.hardware.arduino();
-
-			const name = 'arduino';
-
-			const potassiumLevel = await this.prisma.devices.findFirst({
-				where: {
-					type: 'ARDUINO',
-					name,
-				},
-			});
 
 			if (potassiumLevel) {
 				await this.prisma.devices.update({
@@ -321,6 +435,7 @@ export class DeviceService {
 					},
 					data: {
 						type: 'ARDUINO',
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -330,7 +445,7 @@ export class DeviceService {
 				await this.prisma.devices.create({
 					data: {
 						type: 'ARDUINO',
-						name,
+						name: 'arduino',
 						payload: {
 							...data,
 						},
@@ -340,6 +455,25 @@ export class DeviceService {
 
 			this.logger.log('Moisture Done');
 		} catch (error) {
+			if (potassiumLevel) {
+				await this.prisma.devices.update({
+					where: {
+						id: potassiumLevel.id,
+					},
+					data: {
+						status: 'UNAVAILABLE',
+					},
+				});
+			} else {
+				await this.prisma.devices.create({
+					data: {
+						type: 'ARDUINO',
+						name: 'arduino',
+						status: 'UNAVAILABLE',
+						payload: {},
+					},
+				});
+			}
 			this.logger.log('Moisture Error');
 			this.logger.error(error);
 		}

@@ -1,3 +1,5 @@
+import { DeviceTypes } from './contracts/device.contract';
+
 export function errorToStrings(error: any): string[] {
 	if (error) {
 		if (error.response) {
@@ -19,4 +21,8 @@ export function errorToStrings(error: any): string[] {
 		}
 	}
 	return ['Something went wrong, please try again later.'];
+}
+
+export function transformDeviceValue(type: DeviceTypes, value: any) {
+	return JSON.stringify(value);
 }

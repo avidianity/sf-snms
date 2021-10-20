@@ -3,6 +3,7 @@
 @import '@fontsource/lato';
 @import '@fontsource/material-icons';
 @import './animations';
+@import './toastr';
 
 @mixin spinner {
 	animation: spinning 2000ms linear infinite;

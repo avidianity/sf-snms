@@ -6,6 +6,8 @@ import Plugin from './Plugin';
 import { Route, Switch } from 'react-router';
 import SignUp from './Auth/SignUp';
 import SignIn from './Auth/SignIn';
+import Home from './Home';
+import Devices from './Home/Devices';
 
 type Props = {};
 
@@ -20,6 +22,8 @@ const Dashboard: FC<Props> = (props) => {
 			<div className='main-content position-relative bg-gray-100 max-height-vh-100 h-100 pt-5'>
 				<div className='container-fluid py-5'>
 					<Switch>
+						<Route path={url('/dashboard')} component={Home} />
+						<Route path={url('/devices')} component={Devices} />
 						<Route path={url('/sign-up')} component={SignUp} />
 						<Route path={url('/sign-in')} component={SignIn} />
 					</Switch>

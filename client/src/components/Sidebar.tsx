@@ -95,7 +95,7 @@ const Sidebar: FC<Props> = (props) => {
 									<span className='nav-link-text ms-1'>Devices</span>
 								</Link>
 							</li>
-							<li className='nav-item'>
+							<li className='nav-item d-none'>
 								<Link className='nav-link' to={url('/settings')}>
 									<div
 										className='
