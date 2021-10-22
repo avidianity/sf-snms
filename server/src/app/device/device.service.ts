@@ -4,6 +4,7 @@ import { DeviceStatus, DeviceTypes } from '@prisma/client';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { HardwareService } from '../hardware/hardware.service';
 import { UltrasonicNames } from '../../interfaces/ultrasonic.interface';
+import { shuffle } from 'lodash';
 
 export type ListOptions = {
 	type?: DeviceTypes;
@@ -28,16 +29,18 @@ export class DeviceService {
 	}
 
 	@Cron(CronExpression.EVERY_10_SECONDS)
-	protected async  syncDevices() {
-        await Promise.all([
-            this.syncDHT(),
-            this.syncWaterMainLevel(),
-            this.syncWaterBackupLevel(),
-            this.syncNitrogenLevel(),
-            this.syncPhosphorusLevel(),
-            this.syncPotassiumLevel(),
-            this.syncMoisture(),
-        ]);
+	protected async syncDevices() {
+		await Promise.all(
+			shuffle([
+				this.syncDHT(),
+				this.syncWaterMainLevel(),
+				this.syncWaterBackupLevel(),
+				this.syncNitrogenLevel(),
+				this.syncPhosphorusLevel(),
+				this.syncPotassiumLevel(),
+				this.syncMoisture(),
+			]),
+		);
 	}
 
 	protected async syncDHT() {

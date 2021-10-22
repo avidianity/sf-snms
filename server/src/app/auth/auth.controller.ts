@@ -37,10 +37,10 @@ export class AuthController {
 	async logout(@Req() req: Request) {
 		const { token } = req.user!;
 		await this.prisma.token.delete({ where: { id: token.id } });
-    }
-    
-    @Post('/ping')
-    ping(@Body() data: PingDTO) {
-        return hash(md5(data.payload), 5);
-    }
+	}
+
+	@Post('/ping')
+	ping(@Body() data: PingDTO) {
+		return hash(md5(data.payload), 5);
+	}
 }

@@ -6,11 +6,14 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
+import { BrowserRouter } from 'react-router-dom';
 
 const render = () =>
 	ReactDOM.render(
 		<React.StrictMode>
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</React.StrictMode>,
 		document.getElementById('root')
 	);

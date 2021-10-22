@@ -7,7 +7,7 @@ import { ReactComponent as Box3D50 } from '../assets/icons/box-3d-50.svg';
 import { ReactComponent as Shop } from '../assets/icons/shop.svg';
 import { ReactComponent as Office } from '../assets/icons/office.svg';
 import { useURL } from '../hooks';
-import { AuthContext } from '../contexts';
+import { AuthContext, ServerContext } from '../contexts';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import State from '@avidian/state';
@@ -18,6 +18,7 @@ const Sidebar: FC<Props> = (props) => {
 	const url = useURL();
 	const { user, setUser, setToken } = useContext(AuthContext);
 	const history = useHistory();
+	const { setUrl, setValid } = useContext(ServerContext);
 
 	const logout = async () => {
 		const result = await Swal.fire({
@@ -95,10 +96,22 @@ const Sidebar: FC<Props> = (props) => {
 									<span className='nav-link-text ms-1'>Devices</span>
 								</Link>
 							</li>
-							<li className='nav-item d-none'>
-								<Link className='nav-link' to={url('/settings')}>
-									<div
-										className='
+						</>
+					) : null}
+					<li className='nav-item mt-3'>
+						<h6 className='ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6'>Account</h6>
+					</li>
+					<li className='nav-item'>
+						<a
+							className='nav-link'
+							href={url('/settings')}
+							onClick={(e) => {
+								e.preventDefault();
+								setUrl(null);
+								setValid(false);
+							}}>
+							<div
+								className='
 								icon icon-shape icon-sm
 								shadow
 								border-radius-md
@@ -109,15 +122,10 @@ const Sidebar: FC<Props> = (props) => {
 								align-items-center
 								justify-content-center
 							'>
-										<Settings />
-									</div>
-									<span className='nav-link-text ms-1'>Settings</span>
-								</Link>
-							</li>
-						</>
-					) : null}
-					<li className='nav-item mt-3'>
-						<h6 className='ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6'>Account</h6>
+								<Settings />
+							</div>
+							<span className='nav-link-text ms-1'>Change Server</span>
+						</a>
 					</li>
 					{!user ? (
 						<>

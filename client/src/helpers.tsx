@@ -24,5 +24,15 @@ export function errorToStrings(error: any): string[] {
 }
 
 export function transformDeviceValue(type: DeviceTypes, value: any) {
-	return JSON.stringify(value);
+	switch (type) {
+		case DeviceTypes.DHT:
+			return (
+				<>
+					<div>Temperature: {value?.temperature}°C</div>
+					<div>Temperature: {value?.humidity}%</div>
+				</>
+			);
+		default:
+			return JSON.stringify(value);
+	}
 }

@@ -10,3 +10,15 @@ export const AuthContext = createContext<{
 	setUser: () => {},
 	setToken: () => {},
 });
+
+export const ServerContext = createContext<{
+	url: string | null;
+	setUrl: (url: string | null) => void;
+	valid: boolean;
+	setValid: (valid: boolean) => void;
+}>({
+	url: null,
+	setUrl: () => {},
+	valid: false,
+	setValid: () => {},
+});
