@@ -19,7 +19,7 @@ export class HardwareService {
 	constructor(protected readonly config: ConfigService) {}
 
 	async dht11() {
-		const path = resolve(SCRIPTS_PATH, 'dht11.py');
+		const path = resolve(SCRIPTS_PATH, 'module_dht11.py');
 		const pin = this.config.get<number>('DHT11_PIN');
 
 		if (!pin) {

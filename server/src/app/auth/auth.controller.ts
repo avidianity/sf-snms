@@ -1,8 +1,11 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { hash } from 'bcrypt';
 import { Request } from 'express';
+import md5 from 'md5';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthService } from './auth.service';
 import { LoginDTO } from './dto/login.dto';
+import { PingDTO } from './dto/ping.dto';
 import { RegisterDTO } from './dto/register.dto';
 import { HttpBearerGuard } from './http-bearer.guard';
 
@@ -34,5 +37,10 @@ export class AuthController {
 	async logout(@Req() req: Request) {
 		const { token } = req.user!;
 		await this.prisma.token.delete({ where: { id: token.id } });
-	}
+    }
+    
+    @Post('/ping')
+    ping(@Body() data: PingDTO) {
+        return hash(md5(data.payload), 5);
+    }
 }
