@@ -27,15 +27,17 @@ export class DeviceService {
 		});
 	}
 
-	@Cron(CronExpression.EVERY_30_SECONDS)
-	protected syncDevices() {
-		this.syncDHT();
-		this.syncWaterMainLevel();
-		this.syncWaterBackupLevel();
-		this.syncNitrogenLevel();
-		this.syncPhosphorusLevel();
-		this.syncPotassiumLevel();
-		this.syncMoisture();
+	@Cron(CronExpression.EVERY_10_SECONDS)
+	protected async  syncDevices() {
+        await Promise.all([
+            this.syncDHT(),
+            this.syncWaterMainLevel(),
+            this.syncWaterBackupLevel(),
+            this.syncNitrogenLevel(),
+            this.syncPhosphorusLevel(),
+            this.syncPotassiumLevel(),
+            this.syncMoisture(),
+        ]);
 	}
 
 	protected async syncDHT() {
@@ -55,6 +57,7 @@ export class DeviceService {
 						id: dht.id,
 					},
 					data: {
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -182,6 +185,7 @@ export class DeviceService {
 						id: waterBackupLevel.id,
 					},
 					data: {
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},
@@ -245,6 +249,7 @@ export class DeviceService {
 						id: nitrogenLevel.id,
 					},
 					data: {
+						status: 'STANDBY',
 						payload: {
 							...data,
 						},

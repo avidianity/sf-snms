@@ -5,6 +5,8 @@ datasource db {
 
 generator client {
     provider = "prisma-client-js"
+    binaryTargets = ["native"]
+    engineType = env("PRISMA_QUERY_ENGINE_TYPE")
 }
 
 model User {
