@@ -14,6 +14,10 @@
 
 - [x] Title Defense
 
+- [x] Oral Defense
+
+- [ ] Technical Defense
+
 ## Hardware/Physical Component Requirements
 
 __Items__:
