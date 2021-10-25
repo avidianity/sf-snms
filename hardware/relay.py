@@ -10,8 +10,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin, GPIO.OUT)
 
 if mode == 'on':
-    GPIO.output(pin, GPIO.HIGH)
-elif mode == 'off':
     GPIO.output(pin, GPIO.LOW)
+elif mode == 'off':
+    GPIO.output(pin, GPIO.HIGH)
 
 sleep(0.001)
