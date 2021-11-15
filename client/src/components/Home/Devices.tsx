@@ -15,7 +15,7 @@ const Devices: FC<Props> = (props) => {
 
 	const toggle = async (mode: 'on' | 'off', item: any) => {
 		try {
-			await axios.post(`hardware/toggle/${item}`, { mode });
+			await axios.post(`/hardware/toggle/${item}`, { mode });
 			setDevices({
 				...devices,
 				[item]: mode,
@@ -28,7 +28,7 @@ const Devices: FC<Props> = (props) => {
 	return (
 		<div className='container'>
 			<button
-				className='mx-2 btn btn-sm btn-success'
+				className={`mx-2 btn btn-sm btn-${devices['water-main'] === 'on' ? 'success' : 'danger'}`}
 				onClick={(e) => {
 					e.preventDefault();
 					toggle(devices['water-main'] === 'on' ? 'off' : 'on', 'water-main');
@@ -36,7 +36,7 @@ const Devices: FC<Props> = (props) => {
 				Toggle Main Water {devices['water-main'] === 'on' ? 'Off' : 'On'}
 			</button>
 			<button
-				className='mx-2 btn btn-sm btn-info'
+				className={`mx-2 btn btn-sm btn-${devices['water-backup'] === 'on' ? 'success' : 'danger'}`}
 				onClick={(e) => {
 					e.preventDefault();
 					toggle(devices['water-backup'] === 'on' ? 'off' : 'on', 'water-backup');
@@ -44,7 +44,7 @@ const Devices: FC<Props> = (props) => {
 				Toggle Backup Water {devices['water-backup'] === 'on' ? 'Off' : 'On'}
 			</button>
 			<button
-				className='mx-2 btn btn-sm btn-danger'
+				className={`mx-2 btn btn-sm btn-${devices['nitrogen'] === 'on' ? 'success' : 'danger'}`}
 				onClick={(e) => {
 					e.preventDefault();
 					toggle(devices['nitrogen'] === 'on' ? 'off' : 'on', 'nitrogen');
@@ -52,7 +52,7 @@ const Devices: FC<Props> = (props) => {
 				Toggle Nitrogen {devices['nitrogen'] === 'on' ? 'Off' : 'On'}
 			</button>
 			<button
-				className='mx-2 btn btn-sm btn-warning'
+				className={`mx-2 btn btn-sm btn-${devices['phosphorus'] === 'on' ? 'success' : 'danger'}`}
 				onClick={(e) => {
 					e.preventDefault();
 					toggle(devices['phosphorus'] === 'on' ? 'off' : 'on', 'phosphorus');
@@ -60,7 +60,7 @@ const Devices: FC<Props> = (props) => {
 				Toggle Phosphorus {devices['phosphorus'] === 'on' ? 'Off' : 'On'}
 			</button>
 			<button
-				className='mx-2 btn btn-sm btn-primary'
+				className={`mx-2 btn btn-sm btn-${devices['potassium'] === 'on' ? 'success' : 'danger'}`}
 				onClick={(e) => {
 					e.preventDefault();
 					toggle(devices['potassium'] === 'on' ? 'off' : 'on', 'potassium');
