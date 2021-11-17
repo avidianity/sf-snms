@@ -19,6 +19,8 @@ else
     npm install -g yarn
 fi
 
+sh "./compile-prisma-arm.sh"
+
 # Client
 
 echo 'Changing directory to client'
