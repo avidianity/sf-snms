@@ -16,30 +16,20 @@ MIGRATION_ENGINE="$HOME/prisma/migration-engine"
 PRISMA_FMT="$HOME/prisma/bin/prisma-fmt"
 QUERY_ENGINE="$HOME/prisma/bin/query-engine"
 
-if [ ! -e "$INTROSPECTION_ENGINE" ]; then
-    echo "Downloading prisma introspection engine"
-    wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/introspection-engine" -O "$INTROSPECTION_ENGINE"
-fi
+echo "Downloading prisma introspection engine"
+wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/introspection-engine" -O "$INTROSPECTION_ENGINE"
 
-if [ ! -e "$LIBQUERY_ENGINE" ]; then
-    echo "Downloading prisma libquery engine"
-    wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/libquery_engine.so" -O "$LIBQUERY_ENGINE"
-fi
+echo "Downloading prisma libquery engine"
+wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/libquery_engine.so" -O "$LIBQUERY_ENGINE"
 
-if [ ! -e "$MIGRATION_ENGINE" ]; then
-    echo "Downloading prisma migration engine"
-    wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/migration-engine" -O "$MIGRATION_ENGINE"
-fi
+echo "Downloading prisma migration engine"
+wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/migration-engine" -O "$MIGRATION_ENGINE"
 
-if [ ! -e "$PRISMA_FMT" ]; then
-    echo "Downloading prisma fmt"
-    wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/prisma-fmt" -O "$PRISMA_FMT"
-fi
+echo "Downloading prisma fmt"
+wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/prisma-fmt" -O "$PRISMA_FMT"
 
-if [ ! -e "$QUERY_ENGINE" ]; then
-    echo "Downloading prisma query engine"
-    wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/query-engine" -O "$QUERY_ENGINE"
-fi
+echo "Downloading prisma query engine"
+wget "https://github.com/pantharshit00/prisma-rpi-builds/releases/download/3.2.1/query-engine" -O "$QUERY_ENGINE"
 
 echo "Making binaries executable"
 chmod +x "$INTROSPECTION_ENGINE"
