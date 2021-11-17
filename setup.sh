@@ -2,6 +2,12 @@
 
 echo 'Pre-setup configuration'
 
+if [ ! -x "$(command -v node)" ]; then
+    echo 'Node does not exist, installing...'
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh" | bash
+    nvm install --lts
+fi
+
 if [ -x "$(command -v yarn)" ]; then
     echo 'Yarn exists, skipping...'
 else
