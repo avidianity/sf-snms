@@ -27,7 +27,7 @@ echo 'Create environment variables'
 cp .env.example .env
 
 echo 'Installing client dependencies'
-echo 'NOTE: Installation can take long depending on internet connection, please dont close unexpectedly'
+echo "NOTE: Installation can take long depending on internet connection, please don't close unexpectedly"
 yarn > /dev/null
 
 echo 'Client setup done'
@@ -39,7 +39,7 @@ echo 'Create environment variables'
 cp .env.example .env
 
 echo 'Installing client dependencies'
-echo 'NOTE: Installation can take long depending on internet connection, please dont close unexpectedly'
+echo "NOTE: Installation can take long depending on internet connection, please don't close unexpectedly"
 yarn > /dev/null
 
 echo 'Updating prisma client'
