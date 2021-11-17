@@ -4,9 +4,8 @@ echo 'Pre-setup configuration'
 
 if [ ! -x "$(command -v node)" ]; then
     echo 'Node does not exist, installing...'
-    if [ ! -x "$(command -v nvm)"]; then
-        curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh" | bash
-    fi
+    rm -rf "$HOME/.nvm"
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh" | bash
     export NVM_DIR="$HOME/.nvm"
     . "$NVM_DIR/nvm.sh"
     nvm install --lts
