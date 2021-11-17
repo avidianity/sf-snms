@@ -9,13 +9,14 @@ if [ ! -x "$(command -v node)" ]; then
     export NVM_DIR="$HOME/.nvm"
     . "$NVM_DIR/nvm.sh"
     nvm install --lts
+    npm install -g npm
 fi
 
 if [ -x "$(command -v yarn)" ]; then
     echo 'Yarn exists, skipping...'
 else
     echo 'Installing yarn'
-    npm install -g yarn > /dev/null
+    npm install -g yarn
 fi
 
 # Client
@@ -28,7 +29,7 @@ cp .env.example .env
 
 echo 'Installing client dependencies'
 echo "NOTE: Installation can take long depending on internet connection, please don't close unexpectedly"
-yarn > /dev/null
+yarn
 
 echo 'Client setup done'
 
@@ -40,14 +41,14 @@ cp .env.example .env
 
 echo 'Installing client dependencies'
 echo "NOTE: Installation can take long depending on internet connection, please don't close unexpectedly"
-yarn > /dev/null
+yarn
 
 echo 'Updating prisma client'
-yarn add --dev prisma@latest > /dev/null
-yarn add @prisma/client@latest > /dev/null
+yarn add --dev prisma@latest
+yarn add @prisma/client@latest
 
 echo 'Generating prisma artifacts'
-yarn prisma generate > /dev/null
+yarn prisma generate
 
 echo 'Server setup done'
 
