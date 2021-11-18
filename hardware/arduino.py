@@ -8,8 +8,6 @@ try:
 
     connection = Serial(port, 9600)
 
-    connection.open()
-
     data = (str(connection.readline())[1:]).replace('\\r\\n', '')
     data = data[1:]
     data = data[:-1]
