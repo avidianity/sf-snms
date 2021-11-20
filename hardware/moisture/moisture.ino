@@ -53,9 +53,8 @@ byte nitrogen(){
     digitalWrite(DE,LOW);
     digitalWrite(RE,LOW);
     for(byte i=0;i<7;i++){
-    //Serial.print(mod.read(),HEX);
     values[i] = mod.read();
-    Serial.print(values[i],HEX);
+      // Serial.print(values[i],HEX);
     }
     Serial.println();
   }
@@ -70,9 +69,8 @@ byte phosphorous(){
     digitalWrite(DE,LOW);
     digitalWrite(RE,LOW);
     for(byte i=0;i<7;i++){
-    //Serial.print(mod.read(),HEX);
     values[i] = mod.read();
-    Serial.print(values[i],HEX);
+      // Serial.print(values[i],HEX);
     }
     Serial.println();
   }
@@ -87,9 +85,8 @@ byte potassium(){
     digitalWrite(DE,LOW);
     digitalWrite(RE,LOW);
     for(byte i=0;i<7;i++){
-    //Serial.print(mod.read(),HEX);
     values[i] = mod.read();
-    Serial.print(values[i],HEX);
+      // Serial.print(values[i],HEX);
     }
     Serial.println();
   }
