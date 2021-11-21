@@ -19,7 +19,7 @@ else
     npm install -g yarn
 fi
 
-sh "./compile-prisma-arm.sh"
+sh "./setup-prisma-arm.sh"
 
 # Client
 
@@ -54,5 +54,7 @@ sh "../setup-postgres.sh"
 yarn prisma db push
 
 echo 'Server setup done'
+
+cd ../
 
 exit 0
