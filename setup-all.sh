@@ -51,6 +51,7 @@ yarn add @prisma/client@latest
 
 echo 'Generating prisma artifacts'
 sh "../setup-postgres.sh"
+yarn prisma generate
 yarn prisma db push
 
 echo 'Server setup done'
