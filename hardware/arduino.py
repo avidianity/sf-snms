@@ -16,5 +16,8 @@ try:
     print(dumps(data))
 except:
     print(dumps({
-        'moisture': random.randint(60, 80)
+        'moisture': random.randint(60, 80),
+        'nitrogen': random.randint(0, 255),
+        'potassium': random.randint(0, 255),
+        'phosphorus': random.randint(0, 255),
     }))

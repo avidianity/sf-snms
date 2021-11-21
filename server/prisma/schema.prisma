@@ -4,8 +4,8 @@ datasource db {
 }
 
 generator client {
-    provider      = "prisma-client-js"
-    engineType    = "binary"
+    provider   = "prisma-client-js"
+    engineType = "binary"
 }
 
 model User {
@@ -34,7 +34,6 @@ enum DeviceTypes {
     PERISTALTIC
     RELAY
     ARDUINO
-    NPK
 }
 
 enum DeviceStatus {

@@ -39,7 +39,14 @@ export function transformDeviceValue(type: DeviceTypes, value: any) {
 		case DeviceTypes.ULTRASONIC:
 			return <div>{toNumber(Number(value?.distance || 0))}</div>;
 		case DeviceTypes.ARDUINO:
-			return <div>{value?.moisture}%</div>;
+			return (
+				<div>
+					<p>{value?.moisture}%</p>
+					<p>{value?.nitrogen} mg/kg</p>
+					<p>{value?.phosphorus} mg/kg</p>
+					<p>{value?.potassium} mg/kg</p>
+				</div>
+			);
 		default:
 			return JSON.stringify(value);
 	}
