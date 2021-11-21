@@ -23,6 +23,10 @@ export function errorToStrings(error: any): string[] {
 	return ['Something went wrong, please try again later.'];
 }
 
+export function toNumber(value: number) {
+	return Number.isInteger(value) ? value : value.toPrecision(2);
+}
+
 export function transformDeviceValue(type: DeviceTypes, value: any) {
 	switch (type) {
 		case DeviceTypes.DHT:
@@ -33,7 +37,7 @@ export function transformDeviceValue(type: DeviceTypes, value: any) {
 				</>
 			);
 		case DeviceTypes.ULTRASONIC:
-			return <div>{Number(value?.distance).toPrecision(2)}</div>;
+			return <div>{toNumber(Number(value?.distance || 0))}</div>;
 		case DeviceTypes.ARDUINO:
 			return <div>{value?.moisture}%</div>;
 		default:
