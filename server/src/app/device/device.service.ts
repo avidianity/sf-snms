@@ -236,7 +236,7 @@ export class DeviceService {
 	protected async syncNitrogenLevel() {
 		const nitrogenLevel = await this.prisma.devices.findFirst({
 			where: {
-				type: 'ULTRASONIC',
+				type: 'NPK',
 				name: UltrasonicNames.NITROGEN,
 			},
 		});
@@ -261,7 +261,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.NITROGEN,
 						status: 'STANDBY',
 						payload: {
@@ -285,7 +285,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.NITROGEN,
 						status: 'UNAVAILABLE',
 						payload: {},
@@ -300,7 +300,7 @@ export class DeviceService {
 	protected async syncPhosphorusLevel() {
 		const phosphorusLevel = await this.prisma.devices.findFirst({
 			where: {
-				type: 'ULTRASONIC',
+				type: 'NPK',
 				name: UltrasonicNames.PHOSPHORUS,
 			},
 		});
@@ -325,7 +325,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.PHOSPHORUS,
 						payload: {
 							...data,
@@ -348,7 +348,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.PHOSPHORUS,
 						status: 'UNAVAILABLE',
 						payload: {},
@@ -363,7 +363,7 @@ export class DeviceService {
 	protected async syncPotassiumLevel() {
 		const potassiumLevel = await this.prisma.devices.findFirst({
 			where: {
-				type: 'ULTRASONIC',
+				type: 'NPK',
 				name: UltrasonicNames.POTASSIUM,
 			},
 		});
@@ -379,7 +379,6 @@ export class DeviceService {
 						id: potassiumLevel.id,
 					},
 					data: {
-						type: 'ULTRASONIC',
 						status: 'STANDBY',
 						payload: {
 							...data,
@@ -389,7 +388,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.POTASSIUM,
 						payload: {
 							...data,
@@ -412,7 +411,7 @@ export class DeviceService {
 			} else {
 				await this.prisma.devices.create({
 					data: {
-						type: 'ULTRASONIC',
+						type: 'NPK',
 						name: UltrasonicNames.POTASSIUM,
 						status: 'UNAVAILABLE',
 						payload: {},
