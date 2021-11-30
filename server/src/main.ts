@@ -33,7 +33,7 @@ async function bootstrap() {
 	socketService.setup(app.getHttpServer());
 
 	const config = new DocumentBuilder()
-		.setTitle('SF-SNMS')
+		.setTitle('SNMS')
 		.setDescription('Smart Farming: A Soil Nutrient Monitoring System')
 		.setVersion('1.0')
 		.build();

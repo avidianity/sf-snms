@@ -1,6 +1,6 @@
 {
-	"name": "io.cordova.sfsnms",
-	"displayName": "SFSNMS",
+	"name": "io.cordova.snms",
+	"displayName": "SNMS",
 	"version": "1.0.0",
 	"description": "A sample Apache Cordova application that responds to the deviceready event.",
 	"main": "index.js",
