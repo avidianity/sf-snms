@@ -1,4 +1,7 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    import Mock.GPIO as GPIO
 from sys import argv
 from time import sleep
 

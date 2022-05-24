@@ -1,4 +1,7 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    import Mock.GPIO as GPIO
 import dht11
 import json
 import sys
@@ -26,5 +29,10 @@ try:
             'valid': False,
         }))
     GPIO.cleanup()
-except KeyboardInterrupt:
+except:
+    print(json.dumps({
+        'temperature': random.randint(34, 40),
+        'humidity': random.randint(60, 95),
+        'valid': False,
+    }))
     GPIO.cleanup()
